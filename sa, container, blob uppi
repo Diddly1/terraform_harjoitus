@@ -1,0 +1,30 @@
+resource "azurerm_storage_account" "storageaccount" {
+  name                     = var.storage_account_name
+  resource_group_name      = var.resource_group_name
+  location                 = "westeurope"
+  account_tier             = "Standard"
+  account_replication_type = "LRS"
+  depends_on = [
+  azurerm_resource_group.rg,
+  ]
+}
+
+resource "azurerm_storage_container" "container" {
+  name                  = var.container_name
+  storage_account_name  = var.storage_account_name
+  container_access_type = "private"
+  depends_on = [
+  azurerm_storage_account.storageaccount,
+  ]
+}
+
+resource "azurerm_storage_blob" "blob" {
+  name                   = "testi"
+  storage_account_name   = var.storage_account_name
+  storage_container_name = var.container_name
+  type                   = "Block"
+  source                 = "c:\\temp\\hulk.jpg"
+  depends_on = [
+  azurerm_storage_account.storageaccount,
+  ]
+}
