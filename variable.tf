@@ -1,6 +1,7 @@
 variable "subscription_id" { }
 variable "tenant_id" { }
 variable "salasana" { }
+variable "tunnus" { }
 
 variable "storage_account_name" {
   default = "pietaristorageacco1"

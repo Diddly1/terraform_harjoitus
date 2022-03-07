@@ -80,7 +80,7 @@ resource "azurerm_virtual_machine" "main" {
   }
   os_profile {
     computer_name  = var.vm_name
-    admin_username = "pietari"
+    admin_username = var.tunnus
     admin_password = var.salasana
   }
   os_profile_linux_config {
